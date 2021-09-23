@@ -6,11 +6,8 @@ import ReviewsDAO from "./dao/reviewsDAO.js"
 dotenv.config()
 const MongoClient = mongodb.MongoClient
 
-dotenv.config()
-
 const port = process.env.PORT || 8000
 
-// DB Connection
 MongoClient.connect(process.env.RESTREVIEWS_DB_URI, {
 	maxPoolSize: 50,
 	wtimeoutMS: 2500,
