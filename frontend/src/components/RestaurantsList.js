@@ -75,7 +75,7 @@ const RestaurantsList = (props) => {
 	}
 
 	const findByCuisine = () => {
-		if (searchCuisine == "All Cuisines") {
+		if (searchCuisine === "All Cuisines") {
 			refreshList()
 		} else {
 			find(searchCuisine, "cuisine")
@@ -122,7 +122,12 @@ const RestaurantsList = (props) => {
 				<div className='input-group col-lg-4'>
 					<select onChange={onChangeSearchCuisine}>
 						{cuisines.map((cuisine) => {
-							return <option value={cuisine}> {cuisine.substr(0, 20)} </option>
+							return (
+								<option value={cuisine} key={cuisine}>
+									{" "}
+									{cuisine.substr(0, 20)}{" "}
+								</option>
+							)
 						})}
 					</select>
 					<div className='input-group-append'>
@@ -139,7 +144,7 @@ const RestaurantsList = (props) => {
 				{restaurants.map((restaurant) => {
 					const address = `${restaurant.address.building} ${restaurant.address.street}, ${restaurant.address.zipcode}`
 					return (
-						<div className='col-lg-4 pb-1'>
+						<div className='col-lg-4 pb-1' key={restaurant._id}>
 							<div className='card'>
 								<div className='card-body'>
 									<h5 className='card-title'>{restaurant.name}</h5>
@@ -158,6 +163,7 @@ const RestaurantsList = (props) => {
 										</Link>
 										<a
 											target='_blank'
+											rel='noreferrer noopener'
 											href={"https://www.google.com/maps/place/" + address}
 											className='btn btn-primary col-lg-5 mx-1 mb-1'>
 											View Map
