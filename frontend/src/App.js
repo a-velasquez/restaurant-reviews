@@ -10,9 +10,13 @@ import Login from "./components/Login"
 function App() {
 	const [user, setUser] = useState(null)
 
-	const login = async () => {}
+	const login = async (user = null) => {
+		setUser(user)
+	}
 
-	const logout = async () => {}
+	const logout = async () => {
+		setUser(null)
+	}
 
 	return (
 		<div>
