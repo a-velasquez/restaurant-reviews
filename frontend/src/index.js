@@ -3,6 +3,7 @@ import ReactDOM from "react-dom"
 import App from "./App"
 import { BrowserRouter } from "react-router-dom"
 import { Auth0Provider } from "@auth0/auth0-react"
+import { UserProvider } from "./context/user_context"
 
 ReactDOM.render(
 	<Auth0Provider
@@ -10,9 +11,11 @@ ReactDOM.render(
 		clientId='nNtNm4p0XYk1j7ILeUMHYAexFU21qlZ0'
 		redirectUri={window.location.origin}
 		cacheLocation='localstorage'>
-		<BrowserRouter>
-			<App />
-		</BrowserRouter>
+		<UserProvider>
+			<BrowserRouter>
+				<App />
+			</BrowserRouter>
+		</UserProvider>
 	</Auth0Provider>,
 	document.getElementById("root")
 )
