@@ -5,18 +5,10 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import AddReview from "./components/AddReview"
 import Restaurants from "./components/Restaurants"
 import RestaurantsList from "./components/RestaurantsList"
-import Login from "./components/Login"
+import { useUserContext } from "./context/user_context"
 
 function App() {
-	const [user, setUser] = useState(null)
-
-	const login = async (user = null) => {
-		setUser(user)
-	}
-
-	const logout = async () => {
-		setUser(null)
-	}
+	const { loginWithRedirect, myUser, logout } = useUserContext()
 
 	return (
 		<div>
@@ -30,21 +22,17 @@ function App() {
 							Restaurants
 						</Link>
 					</li>
-					<li className='nav-item'>
-						{user ? (
-							// eslint-disable-next-line
-							<a
-								onClick={logout}
-								className='nav-link'
-								style={{ cursor: "pointer" }}>
-								Logout {user.name}
-							</a>
-						) : (
-							<Link to={"/login"} className='nav-link'>
-								Login
-							</Link>
-						)}
-					</li>
+					{myUser ? (
+						<button
+							type='button'
+							onClick={() => logout({ returnTo: window.location.origin })}>
+							Logout
+						</button>
+					) : (
+						<button type='button' onClick={loginWithRedirect}>
+							Login
+						</button>
+					)}
 				</div>
 			</nav>
 
@@ -57,15 +45,11 @@ function App() {
 					/>
 					<Route
 						path='/restaurants/:id/review'
-						render={(props) => <AddReview {...props} user={user} />}
+						render={(props) => <AddReview {...props} user={myUser} />}
 					/>
 					<Route
 						path='/restaurants/:id'
-						render={(props) => <Restaurants {...props} user={user} />}
-					/>
-					<Route
-						path='/login'
-						render={(props) => <Login {...props} login={login} />}
+						render={(props) => <Restaurants {...props} user={myUser} />}
 					/>
 				</Switch>
 			</div>
