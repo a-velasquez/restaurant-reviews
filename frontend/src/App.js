@@ -20,27 +20,28 @@ function App() {
 
 	return (
 		<div>
-			<nav className='navbar navbar-expand navbar-dark bg-dark'>
-				<a href='/restaurants' className='navbar-brand'>
+			<nav className="navbar navbar-expand navbar-dark bg-dark">
+				<a href="/restaurants" className="navbar-brand">
 					Restaurant Reviews
 				</a>
-				<div className='navbar-nav mr-auto'>
-					<li className='nav-item'>
-						<Link to={"/restaurants"} className='nav-link'>
+				<div className="navbar-nav mr-auto">
+					<li className="nav-item">
+						<Link to={"/restaurants"} className="nav-link">
 							Restaurants
 						</Link>
 					</li>
-					<li className='nav-item'>
+					<li className="nav-item">
 						{user ? (
 							// eslint-disable-next-line
 							<a
 								onClick={logout}
-								className='nav-link'
-								style={{ cursor: "pointer" }}>
+								className="nav-link"
+								style={{ cursor: "pointer" }}
+							>
 								Logout {user.name}
 							</a>
 						) : (
-							<Link to={"/login"} className='nav-link'>
+							<Link to={"/login"} className="nav-link">
 								Login
 							</Link>
 						)}
@@ -48,7 +49,7 @@ function App() {
 				</div>
 			</nav>
 
-			<div className='container mt-3'>
+			<div className="container mt-3">
 				<Switch>
 					<Route
 						exact
@@ -56,15 +57,15 @@ function App() {
 						component={RestaurantsList}
 					/>
 					<Route
-						path='/restaurants/:id/review'
+						path="/restaurants/:id/review"
 						render={(props) => <AddReview {...props} user={user} />}
 					/>
 					<Route
-						path='/restaurants/:id'
+						path="/restaurants/:id"
 						render={(props) => <Restaurants {...props} user={user} />}
 					/>
 					<Route
-						path='/login'
+						path="/login"
 						render={(props) => <Login {...props} login={login} />}
 					/>
 				</Switch>
