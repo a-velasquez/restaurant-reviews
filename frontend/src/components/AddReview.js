@@ -23,9 +23,11 @@ const AddReview = (props) => {
 		var data = {
 			text: review,
 			name: props.user.name,
-			user_id: props.user.id,
+			user_id: props.user.name,
 			restaurant_id: props.match.params.id
 		}
+		console.log(props)
+		console.log(data)
 
 		if (editing) {
 			data.review_id = props.location.state.currentReview._id
@@ -52,33 +54,34 @@ const AddReview = (props) => {
 	return (
 		<div>
 			{props.user ? (
-				<div className='submit-form'>
+				<div className="submit-form">
 					{submitted ? (
 						<div>
 							<h4>You submitted successfully!</h4>
 							<Link
 								to={"/restaurants/" + props.match.params.id}
-								className='btn btn-success'>
+								className="btn btn-success"
+							>
 								Back to Restaurant
 							</Link>
 						</div>
 					) : (
 						<div>
-							<div className='form-group'>
-								<label htmlFor='description'>
+							<div className="form-group">
+								<label htmlFor="description">
 									{editing ? "Edit" : "Create"} Review
 								</label>
 								<input
-									type='text'
-									className='form-control'
-									id='text'
+									type="text"
+									className="form-control"
+									id="text"
 									required
 									value={review}
 									onChange={handleInputChange}
-									name='text'
+									name="text"
 								/>
 							</div>
-							<button onClick={saveReview} className='btn btn-success'>
+							<button onClick={saveReview} className="btn btn-success">
 								Submit
 							</button>
 						</div>
