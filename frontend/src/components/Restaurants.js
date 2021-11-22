@@ -57,18 +57,19 @@ const Restaurants = (props) => {
 					</p>
 					<Link
 						to={"/restaurants/" + props.match.params.id + "/review"}
-						className='btn btn-primary'>
+						className="btn btn-primary"
+					>
 						Add Review
 					</Link>
 					<h4> Reviews </h4>
-					<div className='row'>
+					<div className="row">
 						{restaurant.reviews.length > 0 ? (
 							restaurant.reviews.map((review, index) => {
 								return (
-									<div className='col-lg-4 pb-1' key={index}>
-										<div className='card'>
-											<div className='card-body'>
-												<p className='card-text'>
+									<div className="col-lg-4 pb-1" key={index}>
+										<div className="card">
+											<div className="card-body">
+												<p className="card-text">
 													{review.text}
 													<br />
 													<strong>User: </strong>
@@ -77,12 +78,12 @@ const Restaurants = (props) => {
 													<strong>Date: </strong>
 													{review.date}
 												</p>
-												{props.user && props.user.id === review.user_id && (
-													<div className='row'>
-														{/* eslint-disable-next-line */}
+												{props.user && props.user.name === review.user_id && (
+													<div className="row">
 														<a
 															onClick={() => deleteReview(review._id, index)}
-															className='btn btn-primary col-lg-5 mx-1 mb-1'>
+															className="btn btn-primary col-lg-5 mx-1 mb-1"
+														>
 															Delete
 														</a>
 														<Link
@@ -95,7 +96,8 @@ const Restaurants = (props) => {
 																	currentReview: review
 																}
 															}}
-															className='btn btn-primary col-lg-5 mx-1 mb-1'>
+															className="btn btn-primary col-lg-5 mx-1 mb-1"
+														>
 															Edit
 														</Link>
 													</div>
@@ -106,7 +108,7 @@ const Restaurants = (props) => {
 								)
 							})
 						) : (
-							<div className='col-sm-4'>
+							<div className="col-sm-4">
 								<p>No reviews yet.</p>
 							</div>
 						)}
@@ -121,5 +123,4 @@ const Restaurants = (props) => {
 		</div>
 	)
 }
-
 export default Restaurants
